@@ -1,0 +1,23 @@
+<!-- import org.hibernate.annotations.CollectionOfElements; -->
+<dependency>
+  <groupId>org.hibernate</groupId>
+  <artifactId>hibernate-annotations</artifactId>
+  <version>3.5.6-Final</version>
+</dependency>
+
+<dependency>
+<groupId>commons-logging</groupId>
+<artifactId>commons-logging</artifactId>
+<version>1.1.1</version>
+      </dependency>
+      
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.5</version>
+   </dependency>
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-log4j12</artifactId>
+       <version>1.7.5</version>
+   </dependency>
