@@ -1,0 +1,63 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ForwardedServ
+ */
+@WebServlet(
+		urlPatterns = { "/ForwardedServ" }, 
+		initParams = { 
+				@WebInitParam(name = "friend", value = "Hrishi")
+		})
+public class ForwardedServ extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		PrintWriter out=response.getWriter();
+		ServletContext context=getServletContext();  
+		String contxtName=context.getInitParameter("myName");
+		String contxtAge=context.getInitParameter("myAge");
+		String contxtCourse=context.getInitParameter("myCourse");
+		
+		String n=(String)context.getAttribute("company"); 
+		String n1=(String)context.getAttribute("realName"); 
+		String n2=(String)context.getAttribute("realAge"); 
+		String n3=(String)context.getAttribute("realCourse"); 
+		out.println(n);
+		out.println(n1);
+		out.println(n2);
+		out.println(n3);
+		
+		
+		String reqName=(String)request.getAttribute("reqName");
+		String reqAge=(String)request.getAttribute("reqAge");
+		String reqCourse=(String)request.getAttribute("reqCourse");
+		out.print("<br>");
+		out.println(getServletConfig().getInitParameter("friend"));
+		out.println(contxtName);
+		out.println(contxtAge);
+		out.println(contxtCourse);
+		out.print("<br>");
+		out.println(reqName);
+		out.println(reqAge);
+		out.println(reqCourse);
+		
+		
+	}
+
+}
