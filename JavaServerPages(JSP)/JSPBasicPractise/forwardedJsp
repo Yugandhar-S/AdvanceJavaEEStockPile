@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@page import="java.util.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Forwarded JSP</title>
+</head>
+<body>
+<pre>
+<%=request.getAttribute("sub") %>
+<%=session.getAttribute("course") %>
+<%=application.getAttribute("module") %>
+<%=request.getParameter("book") %>
+
+<%
+List<String> myList=(ArrayList<String>)request.getAttribute("list");
+if(myList!=null){
+	Iterator<String> itr=myList.iterator();
+	while(itr.hasNext()){
+		out.println(itr.next());
+	}
+}
+%>
+</pre>
+</body>
+</html>
