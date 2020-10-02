@@ -16,6 +16,7 @@ public class RegisterDAO {
 			r.setAddress(address);
 			r.setEmail(email);
 			r.setPassword(password);
+			session.save(r);
 			tx.commit();
 			return true;
 		} catch (Exception e) {
