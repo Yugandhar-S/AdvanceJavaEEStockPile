@@ -1,0 +1,18 @@
+unzip maven 
+
+Set 
+path
+D:\apache-maven-3.2.5\bin;
+
+Set
+maven_home	D:\apache-maven-3.2.5
+m2_home		D:\apache-maven-3.2.5
+
+now open a new command prompt and give following command:
+
+mvn
+
+make sure in users folder i.e. "exam1" or "exam2" ,
+.m2 folder gets created.
+
+

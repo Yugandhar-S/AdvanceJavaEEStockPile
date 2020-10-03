@@ -1,0 +1,9 @@
+path
+D:\apache-tomcat-8.0.15\bin;
+
+catalina_home
+D:\apache-tomcat-8.0.15
+
+
+java_home
+C:\Program Files\Java\jdk1.8.0_20
