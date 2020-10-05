@@ -1,0 +1,45 @@
+package mypack;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+
+public class ProductDAO {
+
+	public static Boolean addProduct(String pname, int qty, int price) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction transaction=null;
+		try {
+		transaction=session.beginTransaction();
+		Product p=new Product();
+		
+		p.setPname(pname);
+		p.setPrice(price);
+		p.setQuantity(qty);
+		session.save(p);
+		transaction.commit();
+		return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static List<Product> getProduct() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=null;
+		try {
+			transaction=session.beginTransaction();
+			
+			Query<Product> query=session.createQuery("from Product");
+			List mylist1=query.list();
+			return mylist1;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+}
