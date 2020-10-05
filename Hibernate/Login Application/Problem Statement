@@ -1,0 +1,31 @@
+To create Login application where is Home page wil have two hyperlinks :- Register and Login.
+
+Register link will take user to Register.jsp
+  -Register.jsp will take username, email and password and send the data to RegisterServ servlet
+  
+RegisterServ will take the data and invoke AddUser() method of UserDAO, this method will open session, start transaction and save USER object using hibernate.
+  -AddUser() will return True if operation successful, false if failed.
+  -if true is returned, RegisterServ will print "User Registered", else it will print,"Failed"
+  -forward the request to Home.jsp
+  
+Login link will take user to Login.jsp
+  -Login.jsp will take username and password in form and submit data to LoginServ.
+  
+LoginServ will take the data and invoke validateUser() method is UserDAO, this method will open session, start transaction and create HQL query.
+  -HQL query,"from USER u where u.name=:username and u.password=:password"
+  -then set Parameter for placeholder for username and password.
+  -Retrieve the result in list.
+  -Return the list if any record is found
+  -else return null
+LoginServ will check if List is returned or null is returned, if List is returned.
+  -set the requestParameter with List.
+  -forward the request to View.jsp using RequestDispatcher
+  -else print "record not found"
+  
+View.jsp will collect the list using EL
+  -Will make use of taglig, forEach tag and retrieve Mylist
+  -display the content of record
+ 
+  
+  
+  
