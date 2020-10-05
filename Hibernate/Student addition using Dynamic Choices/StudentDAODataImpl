@@ -1,0 +1,28 @@
+package mypack;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class StudentDAODataImpl implements StudentDAO {
+
+	@Override
+	public Boolean addStudent(Student s) {
+		// TODO Auto-generated method stub
+		
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction transaction=null;
+		
+		try {
+			transaction=session.beginTransaction();
+			session.save(s);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+}
