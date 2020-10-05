@@ -1,0 +1,46 @@
+package mypack;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class UserDAO {
+
+	public static Boolean addUser(User u) {
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=null;
+		
+		try {
+			transaction=session.beginTransaction();
+			session.save(u);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
+	
+	public static List<User> validateUser(String username, String password) {
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		Transaction tx=null;
+		
+		try {
+			tx=session.beginTransaction();
+			Query<User> query=session.createQuery("from User u where u.username=:name and u.password=:password");
+			query.setParameter("name", username);
+			query.setParameter("password", password);
+			List<User> myList=query.list();
+			return myList;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+}
