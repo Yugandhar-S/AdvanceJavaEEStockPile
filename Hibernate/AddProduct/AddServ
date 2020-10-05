@@ -1,0 +1,45 @@
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import mypack.Product;
+import mypack.ProductDAO;
+
+/**
+ * Servlet implementation class AddServ
+ */
+@WebServlet("/AddServ")
+public class AddServ extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		PrintWriter out=response.getWriter();
+		String pname=request.getParameter("pname");
+		int qty=Integer.parseInt(request.getParameter("qty"));
+		int price=Integer.parseInt(request.getParameter("price"));
+		
+		if(ProductDAO.addProduct(pname, qty, price)){
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		
+		List<Product> mylist1=ProductDAO.getProduct();
+		if(mylist1!=null) {
+			out.println(mylist1);
+		}
+		
+	}
+
+}
